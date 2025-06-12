@@ -2,9 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-plt.rcParams['font.sans-serif'] = ['SimHei']  # 支持中文显示
+plt.rcParams['font.sans-serif'] = ['SimHei'] 
 
-# 数据加载
 try:
     df = pd.read_csv('data/train.csv')
     print(f'成功加载{len(df)}条数据')
