@@ -57,7 +57,7 @@ def train():
 
         # 保存模型和编码器
         model.save_model('xgboost_model.json')
-        joblib.dump(label_encoders, 'label_encoders.pkl')
+        joblib.dump(label_encoders, 'xgboost_label_encoders.pkl')
         print('\n模型和编码器已保存！')
 
     except Exception as e:
@@ -68,7 +68,7 @@ def test():
     test_df = pd.read_csv('data/test.csv')
     test_df.drop(columns=['id'], inplace=True, errors='ignore')
     # 加载标签编码器
-    with open('label_encoders.pkl', 'rb') as f:
+    with open('xgboost_label_encoders.pkl', 'rb') as f:
         label_encoders = joblib.load(f)
     
     
@@ -98,8 +98,8 @@ def test():
         'id': range(750000, 750000 + len(test_df)),
         'Fertilizer Name': top3_fertilizers
     })
-    submission.to_csv('data/submission.csv', index=False)
-    print('预测结果已保存至 data/submission.csv')
+    submission.to_csv('data/submission_xgboost.csv', index=False)
+    print('预测结果已保存至 data/submission_xgboost.csv')
 
 if __name__ == '__main__':
     import argparse
